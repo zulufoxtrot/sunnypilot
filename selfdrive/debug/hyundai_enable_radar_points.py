@@ -23,6 +23,11 @@ from panda.python.uds import UdsClient, SESSION_TYPE, DATA_IDENTIFIER_TYPE
 # NOTE: these firmware versions do not match what openpilot uses
 #       because this script uses a different diagnostic session type
 SUPPORTED_FW_VERSIONS = {
+  # 2020 NIRO EV
+  b'DEev SCC F-CUP      1.00 1.00 99110-Q4000\x19\x10\x02\x13"    ': {
+      "default_config": b"\x00\x00\x00\x01\x00\x00",
+      "tracks_enabled": b"\x00\x00\x00\x01\x00\x01",
+  },
   # 2020 SONATA
   b"DN8_ SCC FHCUP      1.00 1.00 99110-L0000\x19\x08)\x15T    ": {
     "default_config": b"\x00\x00\x00\x01\x00\x00",
