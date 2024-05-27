@@ -129,6 +129,9 @@ class CarState(CarStateBase):
       ret.cruiseState.nonAdaptive = cp_cruise.vl["SCC11"]["SCCInfoDisplay"] == 2.  # Shows 'Cruise Control' on dash
       ret.cruiseState.speed = cp_cruise.vl["SCC11"]["VSetDis"] * speed_conv
 
+    if self.CP.flags & HyundaiFlags.EV:
+      ret.cruiseState.nonAdaptive = cp.vl["E_EMS11"]["Cruise_Limit_Status"] == 1
+
     # TODO: Find brake pressure
     ret.brake = 0
     ret.brakePressed = cp.vl["TCS13"]["DriverOverride"] == 2  # 2 includes regen braking by user on HEV/EV
