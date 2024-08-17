@@ -161,6 +161,10 @@ class CarState(CarStateBase):
 
     ret.gearShifter = self.parse_gear_shifter(self.shifter_values.get(gear))
 
+    # disable long control if limiter is active
+    if self.CP.flags & HyundaiFlags.EV:
+      ret.cruiseState.nonAdaptive = cp.vl["E_EMS11"]["Cruise_Limit_Status"] == 1
+
     if not self.CP.openpilotLongitudinalControl and self.CP.carFingerprint in NON_SCC_FCA_CAR:
       aeb_src = "FCA11" if self.CP.flags & HyundaiFlags.USE_FCA.value else "SCC12"
       aeb_sig = "FCA_CmdAct" if self.CP.flags & HyundaiFlags.USE_FCA.value else "AEB_CmdAct"
