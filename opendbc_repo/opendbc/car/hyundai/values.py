@@ -41,6 +41,13 @@ class CarControllerParams:
                                CAR.KIA_OPTIMA_H, CAR.KIA_OPTIMA_H_G4_FL, CAR.KIA_SORENTO):
       self.STEER_MAX = 255
 
+    elif CP.carFingerprint in (CAR.KIA_NIRO_EV):
+      # random values for now, needs testing
+      self.STEER_MAX = 500
+      self.STEER_DELTA_UP = 6  # increase from 3 to 6
+      self.STEER_DELTA_DOWN = 5 # lower than default, to hopefully prevent "blocky" wheel releases after curves
+
+
     # these cars have significantly more torque than most HKG; limit to 70% of max
     elif CP.flags & HyundaiFlags.ALT_LIMITS:
       self.STEER_MAX = 270
